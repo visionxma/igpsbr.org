@@ -15,6 +15,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -37,6 +39,7 @@
                 <li><a href="#home" class="nav-link">Início</a></li>
                 <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
                 <li><a href="#atuacao" class="nav-link">Atuação</a></li>
+                <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
                 <li><a href="#contato" class="nav-link">Contato</a></li>
             </ul>
         </nav>
@@ -92,16 +95,40 @@
     <!-- Contato -->
     <section id="contato">
         <h2 class="section-title">Contato</h2>
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p style="margin-bottom: 2rem;">Entre em contato conosco para saber mais sobre nossos projetos ou parcerias.
+        <div class="contact-container">
+            <p class="contact-description">Entre em contato conosco para saber mais sobre nossos projetos ou parcerias.
             </p>
-            <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-                <div style="font-weight: 600;">E-mail:</div>
-                <a href="mailto:gestao.igps@gmail.com"
-                    style="color: var(--color-blue); text-decoration: none; font-size: 1.2rem; border-bottom: 2px solid var(--color-green);">gestao.igps@gmail.com</a>
+
+            <div class="contact-grid">
+                <a href="mailto:gestao.igps@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-info-text">
+                        <span>E-mail</span>
+                        <strong>gestao.igps@gmail.com</strong>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/559885606419" target="_blank" class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="contact-info-text">
+                        <span>WhatsApp</span>
+                        <strong>+55 98 8560-6419</strong>
+                    </div>
+                </a>
+
+                <a href="https://www.instagram.com/igps20?igsh=MTRnZ2k5ZTd2Mmx5MA==" target="_blank"
+                    class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <div class="contact-info-text">
+                        <span>Instagram</span>
+                        <strong>@igps20</strong>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
+
+
 
     <!-- Footer -->
     <footer>
@@ -109,8 +136,13 @@
             <div class="footer-info">
                 <h3>Instituto de Gestão de Projetos Sociais – IGPS</h3>
                 <p><strong>CNPJ:</strong> 38.441.651/0001-90</p>
-                <p>Icatu – Maranhão</p>
-                <p>E-mail: gestao.igps@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Icatu – Maranhão</p>
+                <p><i class="fas fa-envelope" style="margin-right: 8px;"></i>gestao.igps@gmail.com</p>
+                <p><i class="fab fa-whatsapp" style="margin-right: 8px;"></i><a href="https://wa.me/559885606419"
+                        target="_blank" style="color: inherit; text-decoration: none;">+55 98 8560-6419</a></p>
+                <p><i class="fab fa-instagram" style="margin-right: 8px;"></i><a
+                        href="https://www.instagram.com/igps20?igsh=MTRnZ2k5ZTd2Mmx5MA==" target="_blank"
+                        style="color: inherit; text-decoration: none;">@igps20</a></p>
             </div>
             <div class="footer-info">
                 <h3>Links Rápidos</h3>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Transparência - Instituto de Gestão de Projetos Sociais. Acesse documentos, editais e relatórios.">
+    <title>Transparência | IGPS</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .transparency-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-blue);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--color-green);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (Same as Index) -->
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="img/Imagem1.jpg" alt="Logo IGPS" id="main-logo">
+            </a>
+
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Início</a></li>
+                <li><a href="index.html#sobre" class="nav-link">Sobre Nós</a></li>
+                <li><a href="index.html#atuacao" class="nav-link">Atuação</a></li>
+                <li><a href="transparencia.html" class="nav-link active">Transparência</a></li>
+                <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="transparency-page">
+        <section class="transparency-container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+
+            <h1 class="section-title" style="text-align: left;">Transparência</h1>
+            <p class="transparency-intro" style="text-align: left;">Acesse nossos documentos oficiais, editais e
+                relatórios técnicos. Organizamos nossas informações de forma clara para garantir a prestação de contas à
+                sociedade.</p>
+
+            <div id="transparency-loading" class="loading-state">
+                <div class="spinner"></div>
+                <p>Carregando documentos...</p>
+            </div>
+
+            <div id="transparency-content" class="transparency-groups">
+                <!-- Conteúdo gerado dinamicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Instituto de Gestão de Projetos Sociais – IGPS</h3>
+                <p><strong>CNPJ:</strong> 38.441.651/0001-90</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Icatu – Maranhão</p>
+                <p><i class="fas fa-envelope" style="margin-right: 8px;"></i>gestao.igps@gmail.com</p>
+                <p><i class="fab fa-whatsapp" style="margin-right: 8px;"></i><a href="https://wa.me/559885606419"
+                        target="_blank" style="color: inherit; text-decoration: none;">+55 98 8560-6419</a></p>
+                <p><i class="fab fa-instagram" style="margin-right: 8px;"></i><a
+                        href="https://www.instagram.com/igps20?igsh=MTRnZ2k5ZTd2Mmx5MA==" target="_blank"
+                        style="color: inherit; text-decoration: none;">@igps20</a></p>
+            </div>
+        </div>
+        <div class="credit">
+            Site em produção por VisionX
+        </div>
+    </footer>
+
+    <script>
+        // Separate script for transparency page logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const transparencyContent = document.getElementById('transparency-content');
+            const loadingState = document.getElementById('transparency-loading');
+
+            const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3ikallid9niuLgWewi7JSjaRjR3Zod7H_7ddM7gKxraMXEipg8Ivx-3vcjN-Ud2t_KXIRWaLeG82W/pub?output=csv';
+
+            // Mobile Menu
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            async function fetchTransparencyData() {
+                try {
+                    const response = await fetch(SHEET_CSV_URL);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const csvText = await response.text();
+                    const data = parseCSV(csvText);
+
+                    if (data.length === 0) {
+                        loadingState.innerHTML = '<p>Nenhum documento encontrado ou planilha vazia.</p>';
+                        return;
+                    }
+
+                    renderTransparency(data);
+                    loadingState.style.display = 'none';
+                } catch (error) {
+                    console.error('Erro:', error);
+                    loadingState.innerHTML = `
+                        <div style="color: #666; padding: 20px;">
+                            <p style="color: #d32f2f; font-weight: 600;">Falha ao carregar documentos.</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px;">Verifique se a planilha está publicada como CSV e se o link está correto.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            function normalizeHeader(h) {
+                return h.trim()
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "") // Remove accents
+                    .replace(/^"|"$/g, '');
+            }
+
+            function parseCSV(text) {
+                const lines = text.split(/\r?\n/).filter(line => line.trim());
+                if (lines.length < 2) return [];
+
+                const rawHeaders = lines[0].split(',').map(h => normalizeHeader(h));
+
+                // Map headers to internal keys to handle variations
+                const headerMap = {};
+                rawHeaders.forEach((h, i) => {
+                    if (h.includes('cat')) headerMap[i] = 'categoria';
+                    else if (h.includes('tit') || h.includes('nome')) headerMap[i] = 'titulo';
+                    else if (h.includes('desc')) headerMap[i] = 'descricao';
+                    else if (h.includes('link') || h.includes('url')) headerMap[i] = 'link';
+                });
+
+                return lines.slice(1).map(line => {
+                    const values = [];
+                    let current = '';
+                    let inQuotes = false;
+                    for (let i = 0; i < line.length; i++) {
+                        const char = line[i];
+                        if (char === '"') inQuotes = !inQuotes;
+                        else if (char === ',' && !inQuotes) {
+                            values.push(current.trim().replace(/^"|"$/g, ''));
+                            current = '';
+                        } else current += char;
+                    }
+                    values.push(current.trim().replace(/^"|"$/g, ''));
+
+                    const entry = {};
+                    for (let i in headerMap) {
+                        const key = headerMap[i];
+                        entry[key] = values[i] || '';
+                    }
+                    return entry;
+                });
+            }
+
+            function renderTransparency(data) {
+                const groups = data.reduce((acc, doc) => {
+                    const category = doc.categoria || 'Geral';
+                    if (!acc[category]) acc[category] = [];
+                    acc[category].push(doc);
+                    return acc;
+                }, {});
+
+                transparencyContent.innerHTML = '';
+
+                for (const category in groups) {
+                    const groupDiv = document.createElement('div');
+                    groupDiv.className = 'category-group';
+                    groupDiv.innerHTML = `<h3 class="category-title">${category}</h3>`;
+
+                    const grid = document.createElement('div');
+                    grid.className = 'docs-grid';
+
+                    groups[category].forEach(doc => {
+                        if (!doc.titulo || !doc.link) return;
+
+                        const card = document.createElement('a');
+                        card.className = 'doc-card';
+                        card.href = doc.link;
+                        card.target = '_blank';
+                        card.innerHTML = `
+                            <i class="fas fa-file-pdf"></i>
+                            <span>${doc.titulo}</span>
+                            <div class="doc-tooltip">${doc.descricao || 'Clique para visualizar o documento'}</div>
+                        `;
+                        grid.appendChild(card);
+                    });
+
+                    if (grid.children.length > 0) {
+                        groupDiv.appendChild(grid);
+                        transparencyContent.appendChild(groupDiv);
+                    }
+                }
+            }
+
+            fetchTransparencyData();
+        });
+    </script>
+</body>
+
+</html>

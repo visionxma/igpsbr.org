@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle Mobile Menu
     mobileMenuBtn.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        
-        // Simple animation for the hamburger icon if needed
+
+        // Toggle active class on spans for animation
         const spans = mobileMenuBtn.querySelectorAll('span');
         spans.forEach(span => span.classList.toggle('active'));
     });
@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            spans.forEach(span => span.classList.remove('active'));
         });
     });
 
