@@ -50,13 +50,13 @@
                 <img src="img/Imagem1.jpg" alt="Logo IGPS" id="main-logo">
             </a>
 
-            <div class="nav-search">
-                <div class="search-input-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="site-search" placeholder="Pesquisar..." autocomplete="off">
-                </div>
-                <div id="search-live-results"></div>
+            <div id="search-live-results"></div>
             </div>
+
+            <button id="theme-toggle" class="theme-toggle" title="Alternar Modo Escuro">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
 
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span>
@@ -125,6 +125,17 @@
     <script>
         // Separate script for transparency page logic
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Theme Toggle ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') body.classList.add('dark-mode');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+            });
+
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const navMenu = document.getElementById('nav-menu');
             const transparencyContent = document.getElementById('transparency-content');
