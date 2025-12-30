@@ -50,6 +50,13 @@
                 <img src="img/Imagem1.jpg" alt="Logo IGPS" id="main-logo">
             </a>
 
+            <div class="nav-search">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="site-search" placeholder="Pesquisar no site...">
+                </div>
+            </div>
+
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span>
                 <span></span>
@@ -58,10 +65,11 @@
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html#home" class="nav-link">Início</a></li>
-                <li><a href="index.html#sobre" class="nav-link">Sobre Nós</a></li>
-                <li><a href="index.html#atuacao" class="nav-link">Atuação</a></li>
-                <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+                <li><a href="index.html#quem-somos" class="nav-link">Quem Somos</a></li>
+                <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="index.html#projetos" class="nav-link">Atuação</a></li>
                 <li><a href="transparencia.html" class="nav-link active">Transparência</a></li>
+                <li><a href="index.html#contato" class="nav-link">Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -74,6 +82,13 @@
             <p class="transparency-intro" style="text-align: left;">Acesse nossos documentos oficiais, editais e
                 relatórios técnicos. Organizamos nossas informações de forma clara para garantir a prestação de contas à
                 sociedade.</p>
+
+            <div class="transparency-search">
+                <div class="search-field-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="doc-search" placeholder="Procurar documentos ou projetos...">
+                </div>
+            </div>
 
             <div id="transparency-loading" class="loading-state">
                 <div class="spinner"></div>
@@ -121,19 +136,22 @@
                 navMenu.classList.toggle('active');
             });
 
+            const docSearchInput = document.getElementById('doc-search');
+            let allDocuments = [];
+
             async function fetchTransparencyData() {
                 try {
                     const response = await fetch(SHEET_CSV_URL);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const csvText = await response.text();
-                    const data = parseCSV(csvText);
+                    allDocuments = parseCSV(csvText);
 
-                    if (data.length === 0) {
+                    if (allDocuments.length === 0) {
                         loadingState.innerHTML = '<p>Nenhum documento encontrado ou planilha vazia.</p>';
                         return;
                     }
 
-                    renderTransparency(data);
+                    renderTransparency(allDocuments);
                     loadingState.style.display = 'none';
                 } catch (error) {
                     console.error('Erro:', error);
@@ -145,6 +163,27 @@
                     `;
                 }
             }
+
+            // Filtering logic
+            docSearchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                const filtered = allDocuments.filter(doc =>
+                    (doc.titulo && doc.titulo.toLowerCase().includes(query)) ||
+                    (doc.descricao && doc.descricao.toLowerCase().includes(query)) ||
+                    (doc.categoria && doc.categoria.toLowerCase().includes(query))
+                );
+                renderTransparency(filtered);
+            });
+
+            // Site Search Logic (Copied from index for consistency)
+            const siteSearchInput = document.getElementById('site-search');
+            siteSearchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = siteSearchInput.value.toLowerCase().trim();
+                    if (query.length < 2) return;
+                    window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+                }
+            });
 
             function normalizeHeader(h) {
                 return h.trim()

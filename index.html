@@ -29,6 +29,13 @@
                 <img src="img/Imagem1.jpg" alt="Logo IGPS" id="main-logo">
             </a>
 
+            <div class="nav-search">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="site-search" placeholder="Pesquisar no site...">
+                </div>
+            </div>
+
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span>
                 <span></span>
@@ -37,56 +44,306 @@
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link">Início</a></li>
-                <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
-                <li><a href="#atuacao" class="nav-link">Atuação</a></li>
-                <li><a href="#contato" class="nav-link">Contato</a></li>
+                <li><a href="#quem-somos" class="nav-link">Quem Somos</a></li>
+                <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="#projetos" class="nav-link">Nossa Atuação</a></li>
+                <li><a href="#projeto-easi" class="nav-link">Projeto EASI</a></li>
                 <li><a href="transparencia.html" class="nav-link">Transparência</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Carousel -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <img src="img/Imagem1.jpg" alt="Logo IGPS" id="hero-logo">
-            <p>Promovendo cidadania e dignidade humana através da gestão ética de projetos sociais.</p>
-            <a href="#sobre" class="btn-primary">Conheça nosso trabalho</a>
+        <div class="carousel-container">
+            <!-- Slide 1: Main IGPS -->
+            <div class="carousel-slide active" style="background-image: url('img/igps-hero.jpg');">
+                <div class="carousel-content">
+                    <img src="img/Imagem1.jpg" alt="Logo IGPS" id="hero-logo">
+                    <h1>Excelência em Gestão Social</h1>
+                    <p>Promovendo cidadania e dignidade humana através da gestão ética de projetos sociais.</p>
+                    <a href="#quem-somos" class="btn-primary">Conheça nosso trabalho</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: EASI Project -->
+            <div class="carousel-slide" style="background-image: url('img/easi-bg.jpg');">
+                <div class="carousel-content">
+                    <h1 style="color: #fff;">Projeto Social EASI</h1>
+                    <p>Acolhimento, recuperação e reinserção social para transformar vidas em Icatu/MA.</p>
+                    <a href="#projeto-easi" class="btn-primary">Saiba mais sobre o EASI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-dots"
+            style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 10px;">
+            <span class="dot active"
+                style="width: 12px; height: 12px; background: #fff; border-radius: 50%; cursor: pointer; opacity: 0.5; transition: 0.3s;"></span>
+            <span class="dot"
+                style="width: 12px; height: 12px; background: #fff; border-radius: 50%; cursor: pointer; opacity: 0.5; transition: 0.3s;"></span>
         </div>
     </section>
 
-    <!-- Sobre Nós -->
-    <section id="sobre">
-        <h2 class="section-title">Sobre Nós</h2>
-        <div class="about-content highlight-border">
-            <p>
-                O Instituto de Gestão de Projetos Sociais – IGPS é uma organização da sociedade civil, sem fins
-                lucrativos, fundada em 2020, com sede em Icatu–MA. Atua na promoção e garantia de direitos sociais,
-                desenvolvendo ações nas áreas da saúde, assistência social, educação, cidadania, políticas sobre drogas
-                e inclusão social, sempre pautado pela ética, transparência e respeito à dignidade humana.
-            </p>
-        </div>
-    </section>
-
-    <!-- Áreas de Atuação (Optional Visualization) -->
-    <section id="atuacao" style="background-color: #f9f9f9; padding: 100px 2rem; max-width: 100%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title">Nossa Atuação</h2>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="results-container">
             <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
-                <div
-                    style="padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--color-green);">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-blue);">Saúde</h3>
-                    <p>Promoção de bem-estar e acesso a direitos fundamentais.</p>
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #eee; padding-bottom: 1rem;">
+                <h2 style="color: var(--color-blue);">Resultados da Pesquisa</h2>
+                <button id="close-search" class="btn-close" style="font-size: 2rem;">&times;</button>
+            </div>
+            <div id="search-results-list">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quem Somos -->
+    <section id="quem-somos">
+        <h2 class="section-title">Quem Somos</h2>
+        <div class="about-content">
+            <p>
+                O <strong>INSTITUTO DE GESTÃO DE PROJETOS SOCIAIS – IGPS</strong>, constituído em oito de julho de dois
+                mil,
+                é uma organização da sociedade civil de direito privado, sem fins lucrativos, apartidária e sem fins
+                religiosos,
+                com duração indeterminada.
+            </p>
+            <p style="margin-top: 1rem;">
+                O IGPS tem como objetivo central apoiar, desenvolver e promover diversas frentes fundamentais para o
+                desenvolvimento humano e social:
+            </p>
+
+            <div class="objectives-grid">
+                <div class="objective-item"><i class="fas fa-heartbeat"></i> <span>A Saúde</span></div>
+                <div class="objective-item"><i class="fas fa-hands-helping"></i> <span>Assistência Social</span></div>
+                <div class="objective-item"><i class="fas fa-graduation-cap"></i> <span>Educação e Qualificação</span>
                 </div>
-                <div
-                    style="padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--color-blue);">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-green);">Educação</h3>
-                    <p>Desenvolvimento humano e social através do conhecimento.</p>
+                <div class="objective-item"><i class="fas fa-microscope"></i> <span>Ciência e Tecnologia</span></div>
+                <div class="objective-item"><i class="fas fa-palette"></i> <span>Cultura e Arte</span></div>
+                <div class="objective-item"><i class="fas fa-running"></i> <span>Esporte e Lazer</span></div>
+                <div class="objective-item"><i class="fas fa-leaf"></i> <span>Meio Ambiente</span></div>
+                <div class="objective-item"><i class="fas fa-recycle"></i> <span>Desenv. Sustentável</span></div>
+                <div class="objective-item"><i class="fas fa-utensils"></i> <span>Segurança Alimentar</span></div>
+                <div class="objective-item"><i class="fas fa-shield-alt"></i> <span>Segurança e Vigilância</span></div>
+                <div class="objective-item"><i class="fas fa-tools"></i> <span>Infraestrutura e Obras</span></div>
+                <div class="objective-item"><i class="fas fa-dove"></i> <span>Ética e Cidadania</span></div>
+            </div>
+
+            <div class="identity-container">
+                <div class="identity-card">
+                    <h3><i class="fas fa-bullseye"></i> Missão</h3>
+                    <p>Promover e garantir direitos sociais, fortalecendo os atores e seu protagonismo na construção de
+                        uma sociedade justa e sustentável.</p>
                 </div>
+                <div class="identity-card">
+                    <h3><i class="fas fa-eye"></i> Visão</h3>
+                    <p>Consolidar-se a nível nacional como empreendimento sustentável, com participação diversificada na
+                        formação de cidadãos.</p>
+                </div>
+                <div class="identity-card">
+                    <h3><i class="fas fa-star"></i> Valores</h3>
+                    <ul class="values-list">
+                        <li>Amor ao próximo</li>
+                        <li>Perdão</li>
+                        <li>Honestidade</li>
+                        <li>Ética</li>
+                        <li>Transparência</li>
+                        <li>Integridade</li>
+                        <li>Excelência</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cert-section">
+                <h3 style="margin-bottom: 1.5rem; color: var(--color-blue); text-align: center;">Titulações e
+                    Certificações</h3>
+                <ul class="cert-list">
+                    <li>Utilidade Pública Municipal: Lei Nº 07/2020</li>
+                    <li>Utilidade Pública Estadual: Lei Nº 11.784/2022</li>
+                    <li>CNES 4726995 (Saúde)</li>
+                    <li>CNEAS (Assistência Social)</li>
+                    <li>AERFE (Ministério Público do Maranhão)</li>
+                    <li>Inscrição CMAS e CMDCA de Icatu/MA</li>
+                    <li>Filiada à REMADD</li>
+                    <li>Prêmio REMADD 2023/2025</li>
+                    <li>Integrante de Conselhos Estaduais e Municipais</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossos Serviços -->
+    <section id="servicos" style="background-color: #fcfcfc;">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Assessoria e Consultoria</h3>
+                <p>Técnica especializada em Políticas Públicas para municípios e organizações.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Capacitações</h3>
+                <p>Treinamentos, conferências, encontros, formações, mobilizações, oficinas e seminários.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Diagnóstico Situacional</h3>
+                <p>Levantamento detalhado nas áreas de Assistência Social, Educação e Saúde Municipal.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-file-signature"></i>
+                <h3>Planos de Trabalho</h3>
+                <p>Elaboração, execução e prestação de contas de projetos e termos de parceria.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cogs"></i>
+                <h3>Gerenciamento Público</h3>
+                <p>Operacionalização de equipamentos públicos de Assistência Social, Educação e Saúde.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-users-cog"></i>
+                <h3>Terceirização</h3>
+                <p>Gestão eficiente de mão de obra especializada para diversos setores.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Nossa Atuação -->
+    <section id="projetos">
+        <h2 class="section-title">Nossa Atuação</h2>
+        <div class="timeline">
+            <!-- Project 1 -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="date">2020 - 2025</span>
+                    <h3>Defensoria Pública do Estado do Maranhão</h3>
+                    <p>Assessoria e consultoria para promoção de direitos dos povos originários.</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="date">2020 - 2025</span>
+                    <h3>SEMAS Icatu/MA</h3>
+                    <p>Assessoria técnica para implementação de políticas de Assistência Social.</p>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="date">2022 - 2024</span>
+                    <h3>Prefeitura de Cachoeira Grande/MA</h3>
+                    <p>Planejamento e realização de programas pertinentes a políticas sobre drogas.</p>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="date">2023</span>
+                    <h3>Ministério Público do Trabalho - MPT</h3>
+                    <p>Construção de infraestrutura para o Projeto de Ampliação do Espaço Alternativo Saudável.</p>
+                </div>
+            </div>
+            <!-- Project 5 -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="date">2024 - 2026</span>
+                    <h3>Prefeitura de Morros/MA</h3>
+                    <p>Assessoria institucional e técnica em políticas sobre drogas.</p>
+                </div>
+            </div>
+            <!-- Project 6 -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="date">2025 - 2026</span>
+                    <h3>Ministério do Desenvolvimento Social - MDS</h3>
+                    <p>Serviço de acolhimento residencial para pessoas com transtornos por uso de substâncias.</p>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+            * Elencamos acima alguns dos projetos mais recentes executados nos últimos 5 anos.
+        </p>
+    </section>
+
+    <!-- Projeto Social EASI -->
+    <section id="projeto-easi" style="background-color: #f7f9fc; padding-top: 80px;">
+        <div class="easi-container">
+            <div class="easi-hero">
+                <h3>Espaço Alternativo Saudável de Icatu – EASI</h3>
+                <p>Recuperação, tratamento e reinserção social com amor, respeito e apoio incondicional.</p>
+            </div>
+
+            <div class="easi-content">
+                <div style="max-width: 900px; margin: 0 auto; text-align: justify;">
+                    <p>
+                        O EASI é um projeto dedicado ao cuidado e acolhimento de pessoas com problemas relacionados ao
+                        uso, abuso ou dependência de substâncias psicoativas.
+                        Nossa metodologia é fundamentada na Política Nacional sobre Drogas, priorizando o respeito à
+                        dignidade humana, a autonomia do sujeito e a laicidade.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Baseado nos princípios das Comunidades Terapêuticas e nas Irmandades de Doze Passos (AA e NA),
+                        oferecemos um ambiente multidisciplinar para a reconstrução de vidas.
+                    </p>
+                </div>
+
+                <div class="easi-stats">
+                    <div class="stat-item">
+                        <span>Público-Alvo</span>
+                        <strong>30 Pessoas</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Localização</span>
+                        <strong>Icatu / MA</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Custo Familiar</span>
+                        <strong>R$ 0,00 (Voluntário)</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Frequência Alimentar</span>
+                        <strong>6 Refeições / Dia</strong>
+                    </div>
+                </div>
+
+                <div class="easi-grid">
+                    <div class="easi-info-block">
+                        <h4>Objetivos Específicos</h4>
+                        <ul>
+                            <li>Identificar e acolher pessoas em vulnerabilidade;</li>
+                            <li>Fortalecer vínculos familiares;</li>
+                            <li>Desenvolver conhecimento técnico para o mercado;</li>
+                            <li>Oferecer oportunidades de emprego e renda;</li>
+                            <li>Aplicar projetos de prevenção nas comunidades.</li>
+                        </ul>
+                    </div>
+                    <div class="easi-info-block">
+                        <h4>Nossas Atividades</h4>
+                        <div class="easi-activities">
+                            <span class="activity-tag">Doze Passos</span>
+                            <span class="activity-tag">Mútua Ajuda</span>
+                            <span class="activity-tag">Cursos Profissionalizantes</span>
+                            <span class="activity-tag">Educação Básica</span>
+                            <span class="activity-tag">Práticas Esportivas</span>
+                            <span class="activity-tag">Avaliação Singular (PAS)</span>
+                            <span class="activity-tag">Prevenção e Recaída</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div
-                    style="padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid var(--color-green);">
-                    <h3 style="margin-bottom: 1rem; color: var(--color-blue);">Cidadania</h3>
-                    <p>Fortalecimento da participação e inclusão social.</p>
+                    style="margin-top: 4rem; padding: 2rem; background: #eef2ff; border-radius: 8px; text-align: center;">
+                    <p style="color: var(--color-blue); font-weight: 600;">
+                        Siga o projeto no Instagram: <a href="https://www.instagram.com/easi.icatu" target="_blank"
+                            style="color: var(--color-green);">@easi.icatu</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -147,8 +404,10 @@
             <div class="footer-info">
                 <h3>Links Rápidos</h3>
                 <p><a href="#home" style="color: inherit; text-decoration: none;">Início</a></p>
-                <p><a href="#sobre" style="color: inherit; text-decoration: none;">Sobre Nós</a></p>
-                <p><a href="#atuacao" style="color: inherit; text-decoration: none;">Atuação</a></p>
+                <p><a href="#quem-somos" style="color: inherit; text-decoration: none;">Quem Somos</a></p>
+                <p><a href="#servicos" style="color: inherit; text-decoration: none;">Serviços</a></p>
+                <p><a href="#projetos" style="color: inherit; text-decoration: none;">Atuação</a></p>
+                <p><a href="#projeto-easi" style="color: inherit; text-decoration: none;">Projeto EASI</a></p>
             </div>
         </div>
         <div class="credit">
