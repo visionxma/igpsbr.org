@@ -98,44 +98,6 @@ header {
     width: 100%;
 }
 
-/* Header Search Bar */
-.nav-search {
-    position: relative;
-    margin: 0 1.5rem;
-    display: flex;
-    align-items: center;
-}
-
-.search-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.nav-search input {
-    padding: 0.5rem 1rem 0.5rem 2.5rem;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    outline: none;
-    font-family: var(--font-main);
-    font-size: 0.85rem;
-    transition: var(--transition);
-    width: 180px;
-}
-
-.nav-search input:focus {
-    width: 250px;
-    border-color: var(--color-blue);
-    box-shadow: 0 0 10px rgba(0, 51, 160, 0.1);
-}
-
-.nav-search i {
-    position: absolute;
-    left: 12px;
-    color: #888;
-    pointer-events: none;
-}
-
 /* Hero Carousel */
 .hero {
     height: 90vh;
@@ -144,6 +106,9 @@ header {
     margin-top: 80px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-container {
@@ -181,8 +146,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    /* Overlay for readability */
+    background: rgba(0, 0, 0, 0.45);
     z-index: 1;
 }
 
@@ -195,15 +159,117 @@ header {
 
 .carousel-content h1 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
 }
 
 .carousel-content p {
     font-size: 1.3rem;
     margin-bottom: 2.5rem;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header Styles Improved */
+.nav-search {
+    position: relative;
+    margin: 0 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-search input {
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    border-radius: 25px;
+    border: 1px solid #eee;
+    background: #f8f9fa;
+    outline: none;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    transition: var(--transition);
+    width: 200px;
+}
+
+.nav-search input:focus {
+    width: 300px;
+    border-color: var(--color-blue);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 51, 160, 0.08);
+}
+
+.nav-search i {
+    position: absolute;
+    left: 12px;
+    color: var(--color-blue);
+    pointer-events: none;
+    font-size: 0.9rem;
+}
+
+/* Live Search Dropdown */
+#search-live-results {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 350px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+    display: none;
+    z-index: 2000;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #f0f0f0;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#search-live-results.active {
+    display: block;
+}
+
+.live-search-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f9f9f9;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.live-search-item:hover {
+    background: #f0f4ff;
+}
+
+.live-search-item h4 {
+    font-size: 0.95rem;
+    color: var(--color-blue);
+    margin-bottom: 3px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.live-search-item p {
+    font-size: 0.8rem;
+    color: #888;
 }
 
 /* Mobile Menu Toggle */
@@ -213,6 +279,7 @@ header {
     gap: 5px;
     cursor: pointer;
     z-index: 1100;
+    margin-left: 1rem;
 }
 
 .menu-toggle span {
@@ -221,6 +288,18 @@ header {
     background: var(--color-blue);
     border-radius: 2px;
     transition: var(--transition);
+}
+
+.menu-toggle span.active:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle span.active:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle span.active:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -7px);
 }
 
 /* Search Results (General) */
@@ -281,20 +360,6 @@ header {
     font-size: 1.2rem;
 }
 
-/* Hero Section */
-.hero {
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 2rem;
-    margin-top: 80px;
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('hero-bg.jpg');
-    /* placeholder if image exists */
-    background-size: cover;
-    background-position: center;
-}
 
 .hero-content h1 {
     font-size: 3rem;
@@ -477,8 +542,41 @@ footer {
     color: #666;
 }
 
-/* Responsive */
+@media (max-width: 992px) {
+    .nav-search input {
+        width: 150px;
+    }
+
+    .nav-search input:focus {
+        width: 200px;
+    }
+}
+
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0.8rem 1.5rem;
+    }
+
+    .nav-search {
+        margin: 0;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .nav-search input {
+        width: 40px;
+        padding-left: 12px;
+        color: transparent;
+        cursor: pointer;
+    }
+
+    .nav-search input:focus {
+        width: 180px;
+        padding-left: 2.5rem;
+        color: var(--color-black);
+        cursor: text;
+    }
+
     .nav-menu {
         display: none;
         flex-direction: column;
@@ -488,8 +586,15 @@ footer {
         width: 100%;
         background: var(--color-white);
         padding: 2rem;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         text-align: center;
+        z-index: 1000;
+    }
+
+    #search-live-results {
+        width: 90%;
+        right: 5%;
+        left: 5%;
     }
 
     .nav-menu.active {
@@ -500,8 +605,12 @@ footer {
         display: flex;
     }
 
-    .hero-content h1 {
-        font-size: 2rem;
+    .carousel-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .carousel-content p {
+        font-size: 1.1rem;
     }
 }
 

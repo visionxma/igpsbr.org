@@ -53,8 +53,9 @@
             <div class="nav-search">
                 <div class="search-input-wrapper">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="site-search" placeholder="Pesquisar no site...">
+                    <input type="text" id="site-search" placeholder="Pesquisar..." autocomplete="off">
                 </div>
+                <div id="search-live-results"></div>
             </div>
 
             <div class="menu-toggle" id="mobile-menu-btn">
@@ -175,14 +176,43 @@
                 renderTransparency(filtered);
             });
 
-            // Site Search Logic (Copied from index for consistency)
+            // Site Search Live Dropdown (Consistent with index)
             const siteSearchInput = document.getElementById('site-search');
-            siteSearchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const query = siteSearchInput.value.toLowerCase().trim();
-                    if (query.length < 2) return;
-                    window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+            const liveResults = document.getElementById('search-live-results');
+            const searchData = [
+                { title: 'Início', link: 'index.html#home', content: 'home principal site' },
+                { title: 'Quem Somos', link: 'index.html#quem-somos', content: 'instituto objetivo missao visao valores historia' },
+                { title: 'Nossos Serviços', link: 'index.html#servicos', content: 'consultoria assessoria capacitação treinamento diagnostico' },
+                { title: 'Nossa Atuação', link: 'index.html#projetos', content: 'projetos Maranhão prefeitura defensoria projetos sociais' },
+                { title: 'Projeto Social EASI', link: 'index.html#projeto-easi', content: 'acolhimento recuperação drogas dependência icatu' },
+                { title: 'Contato', link: 'index.html#contato', content: 'email whatsapp instagram localização' }
+            ];
+
+            siteSearchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                if (query.length < 2) { liveResults.classList.remove('active'); return; }
+                const filtered = searchData.filter(item => item.title.toLowerCase().includes(query) || item.content.toLowerCase().includes(query));
+                renderLiveResults(filtered);
+            });
+
+            function renderLiveResults(results) {
+                liveResults.innerHTML = '';
+                if (results.length === 0) {
+                    liveResults.innerHTML = '<div class="live-search-item"><p>Nenhum resultado encontrado.</p></div>';
+                } else {
+                    results.forEach(result => {
+                        const item = document.createElement('div');
+                        item.className = 'live-search-item';
+                        item.innerHTML = `<h4>${result.title}</h4><p>Clique para navegar...</p>`;
+                        item.onclick = () => { window.location.href = result.link; };
+                        liveResults.appendChild(item);
+                    });
                 }
+                liveResults.classList.add('active');
+            }
+
+            document.addEventListener('click', (e) => {
+                if (!siteSearchInput.contains(e.target) && !liveResults.contains(e.target)) liveResults.classList.remove('active');
             });
 
             function normalizeHeader(h) {
