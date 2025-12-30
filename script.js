@@ -5,14 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
+    const mainLogo = document.getElementById('main-logo');
+    const heroLogo = document.getElementById('hero-logo');
+
+    function updateLogos(isDark) {
+        const logoSrc = isDark ? 'img/igpsbranco.png' : 'img/logo-igps.png';
+        if (mainLogo) mainLogo.src = logoSrc;
+        if (heroLogo) heroLogo.src = logoSrc;
+    }
+
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
+        updateLogos(true);
     }
 
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
-        const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-        localStorage.setItem('theme', currentTheme);
+        const isDark = body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateLogos(isDark);
     });
 
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
