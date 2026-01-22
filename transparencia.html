@@ -332,7 +332,57 @@
                 }
             }
 
+            // --- Deep Linking Logic ---
+            let deepLinkHandled = false;
+            function handleDeepLink() {
+                if (deepLinkHandled) return;
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('q');
+
+                if (query) {
+                    deepLinkHandled = true; // Prevent recursion
+
+                    // Pre-fill search input
+                    if (docSearchInput) {
+                        docSearchInput.value = query;
+                        // Trigger input event to filter documents
+                        const event = new Event('input', { bubbles: true });
+                        docSearchInput.dispatchEvent(event);
+                    }
+
+                    // Wait for DOM update and filtering
+                    setTimeout(() => {
+                        // Check if there are any cards visible
+                        const cards = document.querySelectorAll('.doc-card');
+                        let targetCard = null;
+
+                        // If we have cards, picking the first one is a good heuristic if the query matches filter logic
+                        if (cards.length > 0) {
+                            targetCard = cards[0];
+                        }
+
+                        if (targetCard) {
+                            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            targetCard.classList.add('highlight-card');
+
+                            setTimeout(() => {
+                                targetCard.classList.remove('highlight-card');
+                            }, 3000);
+                        }
+                    }, 600);
+                }
+            }
+
+            // Hook into rendering
+            const originalRender = renderTransparency;
+            renderTransparency = function (data) {
+                originalRender(data);
+                handleDeepLink();
+            };
+
             fetchTransparencyData();
+
         });
     </script>
 </body>

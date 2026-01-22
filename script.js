@@ -153,3 +153,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// --- Area Card Expansion (Replaces Modal) ---
+document.addEventListener('DOMContentLoaded', function () {
+    const areaCards = document.querySelectorAll('.area-card, .easi-topic');
+
+    areaCards.forEach(card => {
+        card.addEventListener('click', function () {
+            // Optional: Close other cards if you want accordion style
+            // areaCards.forEach(c => {
+            //     if (c !== card) c.classList.remove('active');
+            // });
+
+            // Toggle current card
+            this.classList.toggle('active');
+        });
+    });
+});
+
+// Deprecated Modal Functions (Removed but keeping function placeholders if needed for legacy support, or fully remove if clean)
+// We fully remove them as the HTML no longer calls them.

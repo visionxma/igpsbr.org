@@ -182,7 +182,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
@@ -701,6 +701,16 @@ section {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     border-color: var(--color-green);
+}
+
+/* Area Cards Adjustments */
+.area-card h4,
+.area-card h4 i {
+    color: var(--color-blue) !important;
+}
+
+.area-card:hover h4 i {
+    transform: scale(1.1);
 }
 
 .contact-item i {
@@ -1286,7 +1296,7 @@ footer {
 }
 
 .easi-hero {
-    background: linear-gradient(rgba(0, 51, 160, 0.9), rgba(0, 51, 160, 0.9)), url('img/easi-bg.jpg');
+    background: linear-gradient(rgba(0, 132, 61, 0.9), rgba(0, 132, 61, 0.9)), url('img/easi-bg.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -1323,7 +1333,7 @@ footer {
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 8px;
-    border-bottom: 4px solid var(--color-blue);
+    border-bottom: 4px solid var(--color-green);
 }
 
 .stat-item span {
@@ -1339,42 +1349,87 @@ footer {
     color: var(--color-blue);
 }
 
-.easi-activities {
+/* EASI Interactive Topics (Green Theme) */
+.easi-detailed-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-}
-
-.activity-tag {
-    background: var(--bg-secondary);
-    color: var(--color-blue);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    transition: var(--transition);
-    border: 1px solid var(--border-color);
-}
-
-.activity-tag:hover {
-    background: var(--color-blue);
-    color: #fff;
-}
-
-.easi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+    justify-content: center;
+    gap: 1.5rem;
     margin-top: 3rem;
+    align-items: flex-start;
 }
 
-.easi-info-block h4 {
+.easi-topic {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--color-green);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 300px;
+    /* Flex growth with base width */
+    max-width: 450px;
+    /* Prevent overly wide cards on large screens */
+}
+
+.easi-topic:hover {
+    transform: translateY(-5px);
+    border-left-color: var(--color-blue);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.easi-topic i {
+    font-size: 2.5rem;
+    color: var(--color-green);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.easi-topic.active i {
     color: var(--color-blue);
-    border-bottom: 2px solid var(--color-green);
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    padding-bottom: 5px;
+}
+
+.easi-topic h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.easi-topic p,
+.easi-topic .visual-highlight-box {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: all 0.5s ease-in-out;
+    color: #555;
+    line-height: 1.6;
+}
+
+.easi-topic.active {
+    background-color: #fff;
+    border-left-color: var(--color-blue);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.easi-topic.active p,
+.easi-topic.active .visual-highlight-box {
+    max-height: 800px;
+    /* Allow large enough height for content */
+    opacity: 1;
+    margin-top: 1rem;
 }
 
 .easi-info-block ul {
@@ -1394,6 +1449,59 @@ footer {
     color: var(--color-green);
     font-size: 1.5rem;
     line-height: 1;
+}
+
+/* EASI Gallery */
+.easi-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.easi-photo-placeholder {
+    background: #fff;
+    border: 2px dashed var(--color-green);
+    border-radius: 12px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-green);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.easi-photo-placeholder:hover {
+    background: rgba(0, 132, 61, 0.05);
+    transform: translateY(-5px);
+}
+
+.easi-photo-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.easi-photo-placeholder span {
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+/* Helper class for when real images are added */
+.easi-photo-item {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    transition: transform 0.3s ease;
+}
+
+.easi-photo-item:hover {
+    transform: scale(1.03);
 }
 
 @media (max-width: 768px) {
@@ -1422,5 +1530,112 @@ footer {
 
     .values-list {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Highlight Card for Deep Linking */
+.highlight-card {
+    border: 2px solid var(--color-green) !important;
+    box-shadow: 0 0 20px rgba(0, 132, 61, 0.4) !important;
+    transform: scale(1.02);
+    transition: all 0.5s ease;
+    z-index: 10;
+    position: relative;
+    background-color: rgba(0, 132, 61, 0.05);
+}
+
+/* Area Cards (New Style - copying Service Cards) */
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    align-items: flex-start;
+    /* Prevents other cards from stretching when one expands */
+}
+
+.area-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--color-blue);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    /* Allow height to adjust */
+    min-height: 160px;
+    /* Minimum height for consistency */
+    position: relative;
+    overflow: hidden;
+    /* Needed for reliable height animations if using max-height, but we'll use auto for simplicity first */
+}
+
+.area-card:hover {
+    transform: translateY(-5px);
+    /* Move up instead of scale to avoid blur/jumpiness */
+    border-left-color: var(--color-green);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.area-card i {
+    font-size: 2.5rem;
+    color: var(--color-blue);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.area-card.active i {
+    color: var(--color-green);
+}
+
+.area-card h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.area-card p {
+    display: block;
+    /* Always in DOM but hidden by height */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    transition: all 0.5s ease-in-out;
+}
+
+.area-card.active {
+    background-color: #fff;
+    border-left-color: var(--color-green);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    /* Slight z-index boost */
+}
+
+.area-card.active p {
+    max-height: 500px;
+    /* Arbitrary large height to allow content to show */
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
