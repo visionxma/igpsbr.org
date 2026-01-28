@@ -1628,6 +1628,43 @@ footer {
     margin-top: 1rem;
 }
 
+/* Red More Prompt Style */
+.read-more {
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+}
+
+.area-card .read-more {
+    color: var(--color-blue);
+}
+
+.easi-topic .read-more {
+    color: var(--color-green);
+}
+
+.read-more i {
+    font-size: 0.75rem !important;
+    margin-bottom: 0 !important;
+    transition: transform 0.3s ease;
+}
+
+.active .read-more i {
+    transform: rotate(180deg);
+}
+
+.read-more span::before {
+    content: 'Ver mais';
+}
+
+.active .read-more span::before {
+    content: 'Ver menos';
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
