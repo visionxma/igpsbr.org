@@ -49,7 +49,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
-    text-align: center;
+    text-align: justify;
 }
 
 /* Typography */
@@ -64,7 +64,7 @@ h3 {
 h4,
 h5,
 h6 {
-    text-align: center;
+    text-align: justify;
 }
 
 /* Header & Navigation */
@@ -167,7 +167,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: justify;
     padding: 0 1.5rem;
     background-size: cover;
     background-position: center;
@@ -319,7 +319,7 @@ header {
         background: var(--header-bg);
         padding: 2.5rem 1.5rem;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        text-align: center;
+        text-align: justify;
         z-index: 1000;
         backdrop-filter: blur(20px);
     }
@@ -477,13 +477,13 @@ header {
     margin-bottom: 3px;
     text-transform: none;
     letter-spacing: 0;
-    text-align: center;
+    text-align: justify;
 }
 
 .live-search-item p {
     font-size: 0.8rem;
     color: #888;
-    text-align: center;
+    text-align: justify;
 }
 
 /* Mobile Menu Toggle */
@@ -615,7 +615,7 @@ section {
 }
 
 .section-title {
-    text-align: center;
+    text-align: justify;
     margin-bottom: 3rem;
     position: relative;
     padding-bottom: 1rem;
@@ -655,7 +655,7 @@ section {
 
 .about-content {
     font-size: 1.1rem;
-    text-align: center;
+    text-align: justify;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -674,7 +674,7 @@ section {
 
 /* Contato Section */
 .contact-container {
-    text-align: center;
+    text-align: justify;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -773,7 +773,7 @@ footer {
 }
 
 .footer-info {
-    text-align: center;
+    text-align: justify;
 }
 
 .footer-info h3 {
@@ -788,7 +788,7 @@ footer {
 }
 
 .credit {
-    text-align: center;
+    text-align: justify;
     padding-top: 2rem;
     border-top: 1px solid #eee;
     font-size: 0.8rem;
@@ -840,7 +840,7 @@ footer {
         background: var(--color-white);
         padding: 2rem;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        text-align: center;
+        text-align: justify;
         z-index: 1000;
     }
 
@@ -909,7 +909,7 @@ footer {
 
 .transparency-container .section-title {
     margin-bottom: 2rem !important;
-    text-align: center;
+    text-align: justify;
 }
 
 .transparency-container .section-title::after {
@@ -936,7 +936,7 @@ footer {
     font-size: 1.1rem;
     color: var(--text-secondary);
     margin-bottom: 3rem;
-    text-align: center;
+    text-align: justify;
 }
 
 /* Document Groups */
@@ -1007,7 +1007,7 @@ footer {
     font-size: 0.85rem;
     font-weight: 400;
     width: 240px;
-    text-align: center;
+    text-align: justify;
     pointer-events: none;
     opacity: 0;
     transition: all 0.3s ease;
@@ -1033,7 +1033,7 @@ footer {
 
 /* Loading State */
 .loading-state {
-    text-align: center;
+    text-align: justify;
     padding: 4rem;
 }
 
@@ -1271,7 +1271,7 @@ footer {
     border-radius: 8px;
     box-shadow: var(--shadow-main);
     border-top: 3px solid var(--color-blue);
-    text-align: center;
+    text-align: justify;
 }
 
 .timeline-content h3 {
@@ -1317,7 +1317,7 @@ footer {
     background-position: center;
     color: #fff;
     padding: 80px 2rem;
-    text-align: center;
+    text-align: justify;
 }
 
 .easi-hero h3 {
@@ -1345,7 +1345,7 @@ footer {
 }
 
 .stat-item {
-    text-align: center;
+    text-align: justify;
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 8px;
@@ -1419,7 +1419,7 @@ footer {
     color: var(--text-primary);
     font-weight: 600;
     margin-bottom: 0.5rem;
-    text-align: center;
+    text-align: justify;
     width: 100%;
 }
 
@@ -1616,7 +1616,7 @@ footer {
     color: var(--text-primary);
     font-weight: 600;
     margin-bottom: 0.5rem;
-    text-align: center;
+    text-align: justify;
     width: 100%;
 }
 
