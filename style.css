@@ -632,6 +632,10 @@ section {
     background: var(--color-green);
 }
 
+.section-title.blue-theme::after {
+    background: var(--color-blue);
+}
+
 .carousel-dots .dot {
     width: 12px;
     height: 12px;
@@ -1252,6 +1256,10 @@ footer {
     z-index: 1;
 }
 
+.timeline.blue-theme .timeline-item::after {
+    border-color: var(--color-blue);
+}
+
 .left {
     left: 0;
 }
@@ -1695,4 +1703,119 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Premiações Interactive section */
+.premiacoes-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.premiacao-card {
+    position: relative;
+    flex: 1 1 350px;
+    max-width: 500px;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    background: var(--card-bg);
+    border: 3px solid transparent;
+}
+
+.premiacao-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 4px solid var(--color-blue);
+    border-radius: 20px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.premiacao-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 45px rgba(0, 51, 160, 0.2);
+}
+
+.premiacao-card:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.premiacao-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.7s ease;
+}
+
+.premiacao-card:hover .premiacao-img {
+    transform: scale(1.1);
+}
+
+.premiacao-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 51, 160, 0.95) 0%, rgba(0, 51, 160, 0.5) 50%, rgba(0, 51, 160, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 3rem 2rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: #fff;
+    z-index: 2;
+}
+
+.premiacao-card:hover .premiacao-overlay {
+    opacity: 1;
+}
+
+.premiacao-overlay i {
+    font-size: 3.5rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.5s ease 0.1s;
+}
+
+.premiacao-card:hover .premiacao-overlay i {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.premiacao-overlay span {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.5s ease 0.2s;
+}
+
+.premiacao-card:hover .premiacao-overlay span {
+    transform: translateY(0);
+    opacity: 1;
 }
